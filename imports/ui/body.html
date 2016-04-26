@@ -1,6 +1,14 @@
 <body>
   <h1>Todos</h1>
 
+  <header>
+    <form class="add-bookmark">
+      <input type="text" name="title" placeholder="type bookmark">
+      <input type="text" name="url" placeholder="type url">
+      <button type="submit" name="submit">Add bookmark</button>
+    </form>
+  </header>
+
   {{#each bookmarks}}
     <ul>
       {{> bookmark}}
