@@ -1,12 +1,13 @@
 <body>
   <h1>Todos</h1>
 
-  {{> bookmark}}
-
+  {{#each bookmarks}}
+    <ul>
+      {{> bookmark}}
+    </ul>
+  {{/each}}
 </body>
 
 <template name="bookmark">
-  <p>
-    bookmark here...
-  </p>
+  <li><a href="{{url}}" target="_blank">{{title}}</a></li>
 </template>
