@@ -22,11 +22,12 @@ Template.newBookmark.events({
       title,
       url,
       createdAt: new Date()
+    }, (error, result) => {
+      Router.go('/');
     });
 
     target.title.value = '';
     target.url.value = '';
 
-    Router.go('/');
   }
 });

@@ -6,7 +6,7 @@ import './edit-bookmark.html';
 Template.editBookmark.events({
     'submit .edit-bookmark'(event) {
       event.preventDefault();
-      
+
       const id = this._id;
       const target = event.target;
       let title = target.title.value;
@@ -22,8 +22,9 @@ Template.editBookmark.events({
           title,
           url
         }
+      }, (error, result) => {
+        Router.go('/');
       });
 
-      Router.go('/')
     }
 });
