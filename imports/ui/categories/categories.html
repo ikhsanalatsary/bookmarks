@@ -1,0 +1,12 @@
+<template name="category">
+  <h1>Category</h1>
+  <a href="{{pathFor route='newCategory'}}">Add Category</a>
+  <ul>
+    {{#each categories}}
+      <li>
+        <a href="{{pathFor route='category'}}">{{name}}</a>
+        <button class="delete">&times;</button>
+      </li>
+    {{/each}}
+  </ul>
+</template>

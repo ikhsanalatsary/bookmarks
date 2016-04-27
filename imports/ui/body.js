@@ -8,6 +8,8 @@ import './body.html';
 
 Template.main.helpers({
   bookmarks() {
-    return Bookmarks.find({});
+    console.log(this._id);
+    const categoryId = this._id;
+    return Bookmarks.find({ categoryId });
   }
 });

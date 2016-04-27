@@ -8,7 +8,9 @@ import './new-bookmark.html';
 Template.newBookmark.events({
   'submit .add-bookmark'(event) {
     event.preventDefault();
+    console.log(this._id);
 
+    const categoryId = this._id;
     const target = event.target;
     let title = target.title.value;
     let url = target.url.value;
@@ -21,7 +23,8 @@ Template.newBookmark.events({
     Bookmarks.insert({
       title,
       url,
-      createdAt: new Date()
+      createdAt: new Date(),
+      categoryId
     }, (error, result) => {
       Router.go('/');
     });

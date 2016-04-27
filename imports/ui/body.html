@@ -3,18 +3,17 @@
 </body>
 
 <template name="home">
-  <!-- <p>
-    this home
-  </p> -->
+  {{> category}}
   {{> yield}}
+  {{> main}}
 </template>
 
 <template name="main">
   <h1>Bookmarks</h1>
   <a href="{{pathFor route='newBookmark'}}">Add bookmark</a>
-  {{#each bookmarks}}
-    <ul>
+  <ul>
+    {{#each bookmarks}}
       {{> bookmark}}
-    </ul>
-  {{/each}}
+    {{/each}}
+  </ul>
 </template>
