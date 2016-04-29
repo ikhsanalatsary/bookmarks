@@ -5,12 +5,24 @@
 <template name="home">
   {{> category}}
   {{> yield}}
-  {{> main}}
 </template>
 
 <template name="main">
-  <h1>Bookmarks</h1>
-  <a href="{{pathFor route='newBookmark'}}">Add bookmark</a>
+  <h2>Bookmarks</h2>
+  {{#if isCategory}}
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add Bookmark</a>
+  {{/if}}
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Create Bookmark</h4>
+      {{> newBookmark}}
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
   <ul>
     {{#each bookmarks}}
       {{> bookmark}}

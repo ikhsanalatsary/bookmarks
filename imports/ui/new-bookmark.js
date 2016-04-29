@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+import { $ } from 'meteor/jquery';
+
 import { Bookmarks } from '../api/bookmarks.js';
 
 import './new-bookmark.html';
@@ -17,6 +19,17 @@ Template.newBookmark.events({
 
     if (title === '' || url === '') {
       throw new Meteor.Error('All field required');
+      $('#modal1').closeModal();
+      return;
+    }
+
+    if (typeof categoryId === 'undefined') {
+      target.title.value = '';
+      target.url.value = '';
+      $('#modal1').closeModal();
+      Meteor.setTimeout(function() {
+        alert('First, you must create category and choose a category!');
+      }, 1000);
       return;
     }
 
@@ -31,6 +44,8 @@ Template.newBookmark.events({
 
     target.title.value = '';
     target.url.value = '';
+
+    $('#modal1').closeModal();
 
   }
 });

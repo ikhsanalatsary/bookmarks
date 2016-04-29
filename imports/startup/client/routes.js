@@ -20,11 +20,6 @@ Router.route('/', {
   template: 'main'
 });
 
-Router.route('/new-bookmark', {
-  name: 'newBookmark',
-  template: 'newBookmark'
-});
-
 Router.route('/edit-bookmark/:_id', {
   name: 'editBookmark',
   template: 'editBookmark',
@@ -37,11 +32,11 @@ Router.route('/edit-bookmark/:_id', {
 Router.route('/new-category/', {
   name: 'newCategory',
   template:'newCategory',
-})
+});
 
 Router.route('/category/:_id', {
   name: 'category',
-  template:'newBookmark',
+  template:'main',
   data() {
     let currentCategory = this.params._id;
     return Categories.findOne({ _id: currentCategory});
