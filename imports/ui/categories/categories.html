@@ -1,12 +1,18 @@
 <template name="category">
   <h2>Category</h2>
   <a href="{{pathFor route='newCategory'}}">Add Category</a>
-  <ul>
-    {{#each categories}}
-      <li>
-        <a href="{{pathFor route='category'}}">{{name}}</a>
-        <button class="delete">&times;</button>
-      </li>
-    {{/each}}
-  </ul>
-</template>
+  <div class="row">
+    <ul>
+        {{#each categories}}
+          <li>
+            <a href="{{pathFor route='category'}}">
+              <div class="input-field col s10">
+                <input type="text" class="category" name="category" value="{{name}}">
+              </div>
+            </a>
+            <a class="delete waves-effect waves-teal btn-flat"><i class="material-icons">&times;</i></a>
+          </li>
+        {{/each}}
+    </ul>
+  </div>
+  </template>
