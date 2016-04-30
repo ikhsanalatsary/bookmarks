@@ -1,7 +1,7 @@
 <template name="bookmark">
-  <li>
-    <a href="{{url}}" target="_blank">{{title}}</a>
-    <a href="{{pathFor route='editBookmark'}}" class="edit">...</a>
-    <button class="delete">&times;</button>
+  <li class="wiw">
+    <a href="{{pathFor route='editBookmark'}}" class="waves-effect waves-teal btn-flat edit"><i class="material-icons">create</i></a>
+    <a class="bookmark" href="{{url}}" target="_blank">{{title}}</a>
+    <a class="waves-effect waves-teal btn-flat clear"><i class="material-icons wow">clear</i></a>
   </li>
 </template>

@@ -1,16 +1,25 @@
 <template name="category">
   <nav>
-  <ul id="slide-out" class="side-nav fixed">
-    <li class="create-category"><a class="waves-effect waves-teal btn-flat" href="{{pathFor route='newCategory'}}"><i class="material-icons">add</i></a></li>
-    {{#each categories}}
-      <li class="ikhsan">
-        <a class="delete"><i class="material-icons">clear</i></a>
-        <a class="waves-effect waves-teal" href="{{pathFor route='category'}}">
-          <input type="text" class="category" name="category" value="{{name}}">
-        </a>
+    <div class="container">
+      <a id="logo-container" href="#" class="brand-logo">My Bookmarks {{name}}{{title}}</a>
+    </div>
+    <ul id="slide-out" class="side-nav fixed">
+      <li class="create-category">
+        <a class="waves-effect waves-teal btn-flat plus" href="{{pathFor route='newCategory'}}">
+        <i class="material-icons">add</i></a>
       </li>
-    {{/each}}
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <li class="title">
+        Category
+      </li>
+      {{#each categories}}
+        <li class="waves-effect waves-teal ikhsan wiw">
+          <a class="delete"><i class="material-icons wow">clear</i></a>
+          <a class="test" href="{{pathFor route='category'}}">
+            <input type="text" class="category" name="category" value="{{name}}">
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </nav>
 </template>

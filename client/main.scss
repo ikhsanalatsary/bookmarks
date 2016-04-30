@@ -9,8 +9,8 @@
 input.category {
   border-bottom: none;
   height: initial;
-  width: 90%;
-  position: relative;
+  width: 85%;
+  // position: relative;
 }
 
 btn-bookmark {
@@ -18,8 +18,14 @@ btn-bookmark {
   right: 24px;
 }
 
-main {
-  padding-left: 240px;
+@media (min-width: 992px) {
+  main {
+    padding-left: 240px;
+  }
+
+  nav .brand-logo {
+    padding-left: 100px;
+  }
 }
 
 // nav .input-field input {
@@ -27,12 +33,60 @@ main {
 // }
 
 li.create-category {
-  padding-left: 150px;
-  padding-right: 5px;
+  padding: 0;
+  position: absolute;
+  right: 0;
 }
 
 a.delete {
   position: absolute;
   right: 0;
   padding-right: 5px;
+}
+
+.wiw:hover .wow {
+    display: block !important;
+}
+
+.wow {
+    display: none !important;
+}
+
+.title {
+  color: black;
+  position: relative;
+}
+
+a.waves-effect.waves-teal.btn-flat.plus {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+a.test:hover {
+  background: none;
+}
+
+li.ikhsan {
+  width: 240px;
+}
+
+a.bookmark {
+  color: black;
+  margin: 20px;
+  padding: 20px;
+}
+
+a.bookmark:hover {
+  color: #ee6e73;
+  // background: none;
+}
+
+a.delete:hover, .delete:hover {
+  color: #ee6e73;
+}
+
+a.clear {
+  right: 0;
+  position: absolute;
+  padding-right: 200px;
 }
