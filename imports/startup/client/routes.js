@@ -13,7 +13,10 @@ import '../../ui/categories/new-category.js';
 
 Router.configure({
   // the default layout
-  layoutTemplate: 'home'
+  layoutTemplate: 'home',
+  yieldRegions: {
+    'category': {to: 'aside'},
+  },
 });
 
 Router.route('/', {

@@ -6,6 +6,11 @@ import { Categories } from '../../api/categories.js';
 import './new-category.js'
 import './categories.html';
 
+Template.category.onRendered(function () {
+  $('.button-collapse').sideNav();
+  // $('.collapsible').collapsible();
+});
+
 Template.category.helpers({
   categories() {
     return Categories.find({});

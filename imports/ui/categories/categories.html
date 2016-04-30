@@ -1,18 +1,16 @@
 <template name="category">
-  <h2>Category</h2>
-  <a href="{{pathFor route='newCategory'}}">Add Category</a>
-  <div class="row">
-    <ul>
-        {{#each categories}}
-          <li>
-            <a href="{{pathFor route='category'}}">
-              <div class="input-field col s10">
-                <input type="text" class="category" name="category" value="{{name}}">
-              </div>
-            </a>
-            <a class="delete waves-effect waves-teal btn-flat"><i class="material-icons">&times;</i></a>
-          </li>
-        {{/each}}
-    </ul>
-  </div>
-  </template>
+  <nav>
+  <ul id="slide-out" class="side-nav fixed">
+    <li class="create-category"><a class="waves-effect waves-teal btn-flat" href="{{pathFor route='newCategory'}}"><i class="material-icons">add</i></a></li>
+    {{#each categories}}
+      <li class="ikhsan">
+        <a class="delete"><i class="material-icons">clear</i></a>
+        <a class="waves-effect waves-teal" href="{{pathFor route='category'}}">
+          <input type="text" class="category" name="category" value="{{name}}">
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  </nav>
+</template>

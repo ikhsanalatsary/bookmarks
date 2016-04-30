@@ -4,13 +4,22 @@
 
 <template name="home">
   {{> category}}
-  {{> yield}}
+  <main>
+    <div class="container">
+      <div class="col s12 m9 l10">
+        {{> yield}}
+      </div>
+    </div>
+  </main>
 </template>
 
 <template name="main">
-  <h2>Bookmarks</h2>
+  <h3>Bookmarks</h3>
   {{#if isCategory}}
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add Bookmark</a>
+    <div class="fixed-action-btn btn-bookmark">
+      <a class="waves-effect waves-light btn btn-floating btn-large red modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+    </div>
+  <!-- <a class="waves-effect waves-light btn btn-floating btn-large red modal-trigger" href="#modal1"><i class="material-icons">add</i></a> -->
   {{/if}}
 
   <!-- Modal Structure -->

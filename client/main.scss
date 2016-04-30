@@ -1,0 +1,38 @@
+/* CSS declarations go here */
+// If you want to override materialize sass variables you can uncomment the following:
+// @import "{poetic:materialize-scss}/sass/components/_color.scss";
+// $primary-color: color("blue", "lighten-2");
+
+// import main scss file
+@import "{poetic:materialize-scss}/sass/materialize.scss";
+
+input.category {
+  border-bottom: none;
+  height: initial;
+  width: 90%;
+  position: relative;
+}
+
+btn-bookmark {
+  bottom: 45px;
+  right: 24px;
+}
+
+main {
+  padding-left: 240px;
+}
+
+// nav .input-field input {
+//   padding-left: 0;
+// }
+
+li.create-category {
+  padding-left: 150px;
+  padding-right: 5px;
+}
+
+a.delete {
+  position: absolute;
+  right: 0;
+  padding-right: 5px;
+}
