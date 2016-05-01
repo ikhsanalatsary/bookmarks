@@ -9,7 +9,6 @@ import './new-bookmark.html';
 Template.newBookmark.events({
   'submit .add-bookmark'(event) {
     event.preventDefault();
-    console.log(this._id);
 
     const categoryId = this._id;
     const target = event.target;

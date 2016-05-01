@@ -4,7 +4,7 @@ import { Bookmarks } from '../api/bookmarks.js';
 import './bookmarks.html';
 
 Template.bookmark.events({
-  'click .delete'() {
+  'click .clear'() {
     return Bookmarks.remove(this._id);
   }
 });

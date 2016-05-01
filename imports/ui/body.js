@@ -9,7 +9,6 @@ import './body.html';
 
 Template.main.helpers({
   bookmarks() {
-    // console.log(this._id);
     const categoryId = this._id;
     if (typeof categoryId === 'undefined') {
       return Bookmarks.find({});
@@ -18,7 +17,6 @@ Template.main.helpers({
     }
   },
   isCategory() {
-    console.log(this._id);
     const currentCategory = this._id;
     if (typeof currentCategory === 'undefined') {
       $('.modal-trigger').hide();

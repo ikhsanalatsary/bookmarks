@@ -5,6 +5,7 @@
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
+@import "{}/node_modules/sweetalert/dev/sweetalert.scss";
 
 input.category {
   border-bottom: none;
@@ -72,8 +73,6 @@ li.ikhsan {
 
 a.bookmark {
   color: black;
-  margin: 20px;
-  padding: 20px;
 }
 
 a.bookmark:hover {
