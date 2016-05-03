@@ -1,8 +1,10 @@
 <template name="category">
-  <nav>
     <div class="container">
       <a id="logo-container" href="#" class="brand-logo">My Bookmarks {{name}}{{title}}</a>
     </div>
+    <ul class="right">
+      <li><a href ="{{pathFor route='signin'}}">Sign in</a></li>
+      </ul>
     <ul id="slide-out" class="side-nav fixed">
       <li class="create-category">
         <a class="waves-effect waves-teal btn-flat plus" href="{{pathFor route='newCategory'}}">
@@ -21,5 +23,4 @@
       {{/each}}
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-  </nav>
 </template>

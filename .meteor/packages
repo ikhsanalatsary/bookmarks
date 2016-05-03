@@ -22,3 +22,9 @@ insecure                # Allow all DB writes from clients (for prototyping)
 iron:router
 fourseven:scss
 poetic:materialize-scss@=1.97.5_2
+useraccounts:materialize
+accounts-password
+accounts-facebook
+accounts-google
+accounts-twitter
+useraccounts:iron-routing

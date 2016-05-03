@@ -6,6 +6,8 @@ import { Bookmarks } from '../api/bookmarks.js';
 
 import './bookmarks.js';
 import './body.html';
+import './login/signin.html';
+import './login/signup.html';
 
 Template.main.helpers({
   bookmarks() {

@@ -40,8 +40,8 @@ Template.newBookmark.events({
       Router.go('/');
     });
 
-    target.title.value = '';
-    target.url.value = '';
+    target.title.value = null;
+    target.url.value = 'http://';
 
     $('#modal1').closeModal();
 

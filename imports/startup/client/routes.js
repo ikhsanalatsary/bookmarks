@@ -14,6 +14,43 @@ import '../../ui/categories/new-category.js';
 Router.configure({
   // the default layout
   layoutTemplate: 'home',
+  yieldTemplates: {
+    category: {to: 'nav'},
+  }
+});
+
+AccountsTemplates.configure({
+  defaultLayout: 'home',
+  confirmPassword: true,
+  texts: {
+    button: {
+      signUp: "Sign Up"
+    },
+    pwdLink_link: "forgotPassword",
+    socialSignUp: "Register",
+    socialIcons: {
+      google: "myGoogleIcon",
+      "meteor-developer": "fa fa-rocket"
+    },
+    title: {
+        forgotPwd: "Recover Your Password"
+    },
+  },
+});
+
+AccountsTemplates.configureRoute('signIn', {
+  name: 'signin',
+  path: '/login',
+  template: 'signin',
+  layoutTemplate: 'home',
+  // redirect: '/user-profile',
+});
+
+AccountsTemplates.configureRoute('signUp', {
+  name: 'signup',
+  path: '/register',
+  template: 'signup',
+  layoutTemplate: 'home',
 });
 
 Router.route('/', {
