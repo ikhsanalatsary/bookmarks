@@ -10,6 +10,7 @@ Template.newBookmark.events({
   'submit .add-bookmark'(event) {
     event.preventDefault();
 
+    const owner = Meteor.userId();
     const categoryId = this._id;
     const target = event.target;
     let title = target.title.value;
@@ -35,6 +36,7 @@ Template.newBookmark.events({
       title,
       url,
       createdAt: new Date(),
+      owner,
       categoryId
     }, (error, result) => {
       Router.go('/');

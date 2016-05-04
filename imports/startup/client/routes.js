@@ -1,4 +1,5 @@
 import { Router } from 'meteor/iron:router';
+import { _ } from 'meteor/underscore';
 import { Template } from 'meteor/templating';
 
 import { Bookmarks } from '../../api/bookmarks.js';
@@ -22,6 +23,7 @@ Router.configure({
 AccountsTemplates.configure({
   defaultLayout: 'home',
   confirmPassword: true,
+  onSubmitHook: mySubmitFunc,
   texts: {
     button: {
       signUp: "Sign Up"
@@ -54,6 +56,7 @@ AccountsTemplates.configureRoute('signUp', {
 });
 
 Router.route('/', {
+  name: 'main',
   template: 'main'
 });
 
@@ -79,3 +82,21 @@ Router.route('/category/:_id', {
     return Categories.findOne({ _id: currentCategory});
   }
 });
+
+Router.plugin('ensureSignedIn', {
+  except: _.pluck(AccountsTemplates.routes, 'name').concat(['main', 'signin', 'signup'])
+});
+
+function mySubmitFunc(error, state) {
+  if (!error) {
+    if (state === "signIn") {
+      // Successfully logged in
+      console.log('tes');
+    }
+    if (state === "signUp") {
+      // Successfully registered
+      console.log('res');
+      Router.go('/login');
+    }
+  }
+};

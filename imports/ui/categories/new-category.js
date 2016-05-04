@@ -11,7 +11,7 @@ Template.newCategory.events({
 
     const target = event.target;
     let name = target.category.value;
-    console.log(name);
+    let owner = Meteor.userId();
 
     if (name === '') {
       throw new Meteor.Error('All field required');
@@ -20,7 +20,8 @@ Template.newCategory.events({
 
     Categories.insert({
       name,
-      createdAt: new Date()
+      createdAt: new Date(),
+      owner
     }, (error, result) => {
       Router.go('/');
     });

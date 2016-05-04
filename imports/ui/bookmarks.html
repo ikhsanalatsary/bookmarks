@@ -1,7 +1,9 @@
 <template name="bookmark">
+  {{#if currentUser}}
   <li class="wiw">
     <a href="{{pathFor route='editBookmark'}}" class="waves-effect waves-teal btn-flat edit"><i class="material-icons">create</i></a>
     <a class="bookmark" href="{{url}}" target="_blank">{{title}}</a>
     <a class="waves-effect waves-teal btn-flat clear"><i class="material-icons wow">clear</i></a>
   </li>
+  {{/if}}
 </template>

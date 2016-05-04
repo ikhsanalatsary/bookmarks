@@ -12,10 +12,11 @@ import './login/signup.html';
 Template.main.helpers({
   bookmarks() {
     const categoryId = this._id;
+    const owner = Meteor.userId();
     if (typeof categoryId === 'undefined') {
-      return Bookmarks.find({});
+      return Bookmarks.find({owner});
     } else {
-      return Bookmarks.find({ categoryId });
+      return Bookmarks.find({ categoryId, owner });
     }
   },
   isCategory() {

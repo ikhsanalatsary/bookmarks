@@ -15,7 +15,8 @@ Template.category.onRendered(function () {
 
 Template.category.helpers({
   categories() {
-    return Categories.find({});
+    const owner = Meteor.userId();
+    return Categories.find({ owner });
   }
 });
 
@@ -63,5 +64,10 @@ Template.category.events({
     if (event.which === 13 || event.which === 27) {
       event.target.blur();
     }
+  },
+  'click .signout'(event) {
+    event.preventDefault();
+    Meteor.logout();
+    Router.go('/');
   }
 });
