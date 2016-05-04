@@ -16,6 +16,10 @@ Template.newBookmark.events({
     let title = target.title.value;
     let url = target.url.value;
 
+    if (!owner) {
+      throw new Meteor.Error('Not Authorized - 401');
+    }
+
     if (title === '' || url === '') {
       throw new Meteor.Error('All field required');
       $('#modal1').closeModal();

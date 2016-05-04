@@ -5,6 +5,12 @@ import './bookmarks.html';
 
 Template.bookmark.events({
   'click .clear'() {
-    return Bookmarks.remove(this._id);
+    const id = this._id;
+    const bookmark = Bookmarks.findOne(id);
+
+    if (bookmark.owner !== Meteor.userId()) {
+      throw new Meteor.Error('Not Authorized - 401');
+    }
+    return Bookmarks.remove(id);
   }
 });

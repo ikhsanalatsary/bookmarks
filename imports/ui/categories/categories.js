@@ -24,9 +24,15 @@ Template.category.events({
   'click .delete'(event) {
     const categoryId = this._id;
     let bookmark = Bookmarks.find({ categoryId });
+    const category = Categories.findOne(categoryId);
+
+    if (category.owner !== Meteor.userId()) {
+      throw new Meteor.Error('Not Authorized - 401');
+    }
+
     swal({
         title: "Are you sure?",
-        text: "You will not be able to recover this category and bookmarks in this category!",
+        text: "You will delete this category and all bookmarks in this category!",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
@@ -54,6 +60,12 @@ Template.category.events({
     let categoryId = this._id;
     let target = event.target;
     let name = target.value;
+
+    const category = Categories.findOne(categoryId);
+
+    if (category.owner !== Meteor.userId()) {
+      throw new Meteor.Error('Not Authorized - 401');
+    }
 
     Categories.update(categoryId, {
       $set: {

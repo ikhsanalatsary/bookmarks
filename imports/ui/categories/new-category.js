@@ -13,6 +13,10 @@ Template.newCategory.events({
     let name = target.category.value;
     let owner = Meteor.userId();
 
+    if (!owner) {
+      throw new Meteor.Error('Not Authorized - 401');
+    }
+
     if (name === '') {
       throw new Meteor.Error('All field required');
       return;

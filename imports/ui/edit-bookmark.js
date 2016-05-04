@@ -12,6 +12,12 @@ Template.editBookmark.events({
       let title = target.title.value;
       let url = target.url.value;
 
+      const bookmark = Bookmarks.findOne(id);
+
+      if (bookmark.owner !== Meteor.userId()) {
+        throw new Meteor.Error('Not Authorized - 401');
+      }
+
       if (title === '' || url === '') {
         throw new Meteor.Error('All field required');
         return;
