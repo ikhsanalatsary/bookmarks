@@ -13,6 +13,10 @@ Template.category.onRendered(function () {
   // $('.collapsible').collapsible();
 });
 
+Template.category.onCreated(function () {
+  Meteor.subscribe('categories');
+});
+
 Template.category.helpers({
   categories() {
     const owner = Meteor.userId();

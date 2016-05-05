@@ -56,7 +56,10 @@ AccountsTemplates.configureRoute('signUp', {
 
 Router.route('/', {
   name: 'main',
-  template: 'main'
+  template: 'main',
+  subscriptions() {
+    return Meteor.subscribe('bookmarks');
+  }
 });
 
 Router.route('/edit-bookmark/:_id', {
@@ -67,7 +70,6 @@ Router.route('/edit-bookmark/:_id', {
     return Bookmarks.findOne({ _id: currentBookmark});
   },
   onBeforeAction() {
-    console.log("You triggered 'onBeforeAction' for 'listPage' route.");
     const currentUser = Meteor.userId();
     const bookmarkId = this.params._id;
     const bookmark = Bookmarks.findOne(bookmarkId);
@@ -81,6 +83,9 @@ Router.route('/edit-bookmark/:_id', {
       },1000);
     }
   },
+  subscriptions() {
+    return Meteor.subscribe('bookmarks');
+  }
 });
 
 Router.route('/new-category/', {
@@ -110,6 +115,9 @@ Router.route('/category/:_id', {
       },1000);
     }
   },
+  subscriptions() {
+    return Meteor.subscribe('bookmarks');
+  }
 });
 
 Router.plugin('ensureSignedIn', {
