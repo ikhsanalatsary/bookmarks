@@ -1,6 +1,7 @@
 import { Router } from 'meteor/iron:router';
 import { _ } from 'meteor/underscore';
 import { Template } from 'meteor/templating';
+import swal from 'sweetalert';
 
 import { Bookmarks } from '../../api/bookmarks.js';
 import { Categories } from '../../api/categories.js';
@@ -23,7 +24,6 @@ Router.configure({
 AccountsTemplates.configure({
   defaultLayout: 'home',
   confirmPassword: true,
-  onSubmitHook: mySubmitFunc,
   texts: {
     button: {
       signUp: "Sign Up"
@@ -45,7 +45,6 @@ AccountsTemplates.configureRoute('signIn', {
   path: '/login',
   template: 'signin',
   layoutTemplate: 'home',
-  // redirect: '/user-profile',
 });
 
 AccountsTemplates.configureRoute('signUp', {
@@ -66,7 +65,22 @@ Router.route('/edit-bookmark/:_id', {
   data() {
     let currentBookmark = this.params._id;
     return Bookmarks.findOne({ _id: currentBookmark});
-  }
+  },
+  onBeforeAction() {
+    console.log("You triggered 'onBeforeAction' for 'listPage' route.");
+    const currentUser = Meteor.userId();
+    const bookmarkId = this.params._id;
+    const bookmark = Bookmarks.findOne(bookmarkId);
+
+    if(currentUser === bookmark.owner){
+      this.next();
+    } else {
+      Router.go('/');
+      Meteor.setTimeout(() => {
+        swal("Forbidden!", "You can't access this bookmark directly, Redirect to list!", "error");
+      },1000);
+    }
+  },
 });
 
 Router.route('/new-category/', {
@@ -80,23 +94,24 @@ Router.route('/category/:_id', {
   data() {
     let currentCategory = this.params._id;
     return Categories.findOne({ _id: currentCategory});
-  }
+  },
+  onBeforeAction() {
+    console.log("You triggered 'onBeforeAction' for 'listPage' route.");
+    const currentUser = Meteor.userId();
+    const categoryId = this.params._id;
+    const category = Categories.findOne(categoryId);
+
+    if(currentUser === category.owner){
+      this.next();
+    } else {
+      Router.go('/');
+      Meteor.setTimeout(() => {
+        swal("Forbidden!", "You can't access this category directly, Redirect to list!", "error");
+      },1000);
+    }
+  },
 });
 
 Router.plugin('ensureSignedIn', {
   except: _.pluck(AccountsTemplates.routes, 'name').concat(['main', 'signin', 'signup'])
 });
-
-function mySubmitFunc(error, state) {
-  if (!error) {
-    if (state === "signIn") {
-      // Successfully logged in
-      console.log('tes');
-    }
-    if (state === "signUp") {
-      // Successfully registered
-      console.log('res');
-      Router.go('/login');
-    }
-  }
-};
