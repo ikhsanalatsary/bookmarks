@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Bookmarks } from '../api/bookmarks.js';
 
@@ -12,24 +13,17 @@ Template.editBookmark.events({
       let title = target.title.value;
       let url = target.url.value;
 
-      const bookmark = Bookmarks.findOne(id);
-
-      if (bookmark.owner !== Meteor.userId()) {
-        throw new Meteor.Error('Not Authorized - 401');
-      }
-
       if (title === '' || url === '') {
         throw new Meteor.Error('All field required');
         return;
       }
 
-      Bookmarks.update(id, {
-        $set: {
-          title,
-          url
+      Meteor.call('edit.bookmark', id, title, url, (error, result) => {
+        if (error) {
+          console.log(error.reason);
+        } else {
+          Router.go('/');
         }
-      }, (error, result) => {
-        Router.go('/');
       });
 
     }

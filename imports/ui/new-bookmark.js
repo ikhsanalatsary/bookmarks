@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { $ } from 'meteor/jquery';
@@ -10,15 +11,10 @@ Template.newBookmark.events({
   'submit .add-bookmark'(event) {
     event.preventDefault();
 
-    const owner = Meteor.userId();
     const categoryId = this._id;
     const target = event.target;
     let title = target.title.value;
     let url = target.url.value;
-
-    if (!owner) {
-      throw new Meteor.Error('Not Authorized - 401');
-    }
 
     if (title === '' || url === '') {
       throw new Meteor.Error('All field required');
@@ -36,20 +32,16 @@ Template.newBookmark.events({
       return;
     }
 
-    Bookmarks.insert({
-      title,
-      url,
-      createdAt: new Date(),
-      owner,
-      categoryId
-    }, (error, result) => {
-      Router.go('/');
+    Meteor.call('create.bookmark', title, url, categoryId, (error, result) => {
+      if (error) {
+        console.log(error.reason);
+      } else {
+        target.title.value = null;
+        target.url.value = 'http://';
+
+        $('#modal1').closeModal();
+      }
+
     });
-
-    target.title.value = null;
-    target.url.value = 'http://';
-
-    $('#modal1').closeModal();
-
   }
 });

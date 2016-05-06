@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import swal from 'sweetalert';
@@ -27,12 +28,6 @@ Template.category.helpers({
 Template.category.events({
   'click .delete'(event) {
     const categoryId = this._id;
-    let bookmark = Bookmarks.find({ categoryId });
-    const category = Categories.findOne(categoryId);
-
-    if (category.owner !== Meteor.userId()) {
-      throw new Meteor.Error('Not Authorized - 401');
-    }
 
     swal({
         title: "Are you sure?",
@@ -47,11 +42,7 @@ Template.category.events({
     },
     function(isConfirm) {
         if (isConfirm) {
-          bookmark.forEach((bookmark) => {
-            let bookmarkId = bookmark._id;
-            return Bookmarks.remove(bookmarkId);
-          });
-          return Categories.remove(categoryId);
+          Meteor.call('delete.category', categoryId);
         } else {
           swal("Cancelled", "Your bookmarks is safe :)", "error");
           return;
@@ -65,17 +56,7 @@ Template.category.events({
     let target = event.target;
     let name = target.value;
 
-    const category = Categories.findOne(categoryId);
-
-    if (category.owner !== Meteor.userId()) {
-      throw new Meteor.Error('Not Authorized - 401');
-    }
-
-    Categories.update(categoryId, {
-      $set: {
-        name,
-      }
-    });
+    Meteor.call('edit.category', categoryId, name);
 
     if (event.which === 13 || event.which === 27) {
       event.target.blur();

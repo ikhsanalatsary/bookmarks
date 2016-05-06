@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -11,26 +12,14 @@ Template.newCategory.events({
 
     const target = event.target;
     let name = target.category.value;
-    let owner = Meteor.userId();
 
-    if (!owner) {
-      throw new Meteor.Error('Not Authorized - 401');
-    }
-
-    if (name === '') {
-      throw new Meteor.Error('All field required');
-      return;
-    }
-
-    Categories.insert({
-      name,
-      createdAt: new Date(),
-      owner
-    }, (error, result) => {
-      Router.go('/');
+    Meteor.call('create.category', name, (error, result) => {
+      if (error) {
+        console.log(error.reason);
+      } else {
+        Router.go('/');
+        target.category.value = '';
+      }
     });
-
-    target.category.value = '';
-
   }
 });
