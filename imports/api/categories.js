@@ -69,7 +69,7 @@ Meteor.methods({
 function defaultName(currentUser) {
   var nextLetter = 'A';
   var nextName = 'Category ' + nextLetter;
-  while (Categories.findOne({ name: nextName, createdBy: currentUser })) {
+  while (Categories.findOne({ name: nextName, owner: currentUser })) {
     nextLetter = String.fromCharCode(nextLetter.charCodeAt(0) + 1);
     nextName = 'Category ' + nextLetter;
   }

@@ -11,7 +11,7 @@ Template.newCategory.events({
     event.preventDefault();
 
     const target = event.target;
-    let name = target.category.value;
+    var name = target.category.value;
 
     Meteor.call('create.category', name, (error, result) => {
       if (error) {
